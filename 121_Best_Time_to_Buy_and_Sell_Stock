@@ -1,0 +1,24 @@
+/*
+Given an array; prices[i] where i repesent days
+Buy the cheapest stock on a day and being able to sell that stock on a different day
+Want to return the maximum profit
+If we can't return 0
+*/
+
+class Solution {
+    public int maxProfit(int[] prices) {
+
+        int lowest = prices[0];
+        int maxProfits = 0;
+
+        for (int i = 0; i < prices.length; i++){
+            if (prices[i] < lowest) {
+                lowest = prices[i];
+            }
+            if (prices[i] - lowest > maxProfits) {
+                maxProfits = prices[i] - lowest;
+            }
+        }
+        return maxProfits;
+    }
+}
