@@ -1,0 +1,40 @@
+/*
+string = s will only include '(' ')' '{' '}' "[' ']"
+Only valid if:
+Open brackets are closed with closed bracket
+Open brackets must be in correct order
+Every close bracket has the correct open bracket
+
+Last In First Out - Deque
+*/
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+class Solution {
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{')
+                stack.push(s.charAt(i));
+            else if 
+                (s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}')
+            {
+                if (stack.isEmpty()) return false;
+                char top = stack.pop();
+                
+                if (s.charAt(i) == ')' && top != '(') {
+                    return false;
+                }
+                if (s.charAt(i) == ']' && top != '[') {
+                    return false;
+                }
+                if (s.charAt(i) == '}' && top != '{') {
+                    return false; 
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
